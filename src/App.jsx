@@ -24,9 +24,7 @@ function App() {
       const { data } = await getImage()
       //const { data } = await getImage()
       //setConsul(data.explanation)'
-      //setConsul( JSON.stringify(data) )
-      //setConsul(Object.values(data))
-      setConsul(JSON.stringify(data))
+      setConsul(data)
     }
     catch (error){
       //console.log('codigo de error',error.code)
@@ -45,10 +43,9 @@ function App() {
     e.preventDefault()
     //setQuery(searchRef.current.value)
     const { data } = await getImage(searchRef.current.value)
-    //setConsul( Object.values(data) )
-    setConsul(JSON.stringify(data))
+    setConsul(data)
     //console.log(searchRef.current.value)
-    //e.target.reset()
+    e.target.reset()
   }
 
   return (
