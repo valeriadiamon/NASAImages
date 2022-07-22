@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState , useRef, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import ImgText from './components/ImgText'
+import Loading from './components/Loading'
 
 const key = '9IxjfqCCFeJ7xPQtX4RyChOJ6kApdNCEC7AMLjHf'
 const url = 'https://api.nasa.gov/planetary/apod?'
@@ -49,8 +50,7 @@ function App() {
         <button className="btn btn-secondary" type="submit">Search</button>
       </div>
       </form>
-      { consulta == null ? 'no hay datos' : <ImgText data={ consulta }/> } 
-      
+      { consulta == null ? <Loading /> : <ImgText data={ consulta }/> } 
     </div> 
   )
 }
