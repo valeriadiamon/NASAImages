@@ -1,7 +1,7 @@
 const ImgText = ({ data }) => {
     return (
       <div className="card container" style={{width: '80%'}}>
-  <img src={data.hdurl} className="card-img-top" alt="..." />
+  <img src={data.hdurl} className="card-img-top" alt={data.title} />
   <div className="card-body">
     <h5 className="card-title">{ data.title }</h5>
     <p className="card-text">{ data.explanation }</p>

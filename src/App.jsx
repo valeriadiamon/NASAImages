@@ -1,52 +1,43 @@
 import axios from 'axios'
 import { useState , useRef, useEffect } from 'react'
 import Navbar from './components/Navbar'
-import './App.css'
-//import useFetcher from './hooks/useFetcher'
 import ImgText from './components/ImgText'
 
 const key = '9IxjfqCCFeJ7xPQtX4RyChOJ6kApdNCEC7AMLjHf'
 const url = 'https://api.nasa.gov/planetary/apod?'
 
 function App() {
-  //const [query, setQuery] = useState()
   const searchRef = useRef(null)
   const [ consulta, setConsul ] = useState(null)
   
   const getImage = async (query = '2022-05-07') => {
     //const req = await axios.get("https://api.nasa.gov/planetary/apod?date=2022-06-15&api_key=9IxjfqCCFeJ7xPQtX4RyChOJ6kApdNCEC7AMLjHf")
-    console.log("hizo la peticion")
+    //console.log("hizo la peticion")
     return await axios.get(`${url}date=${query}&api_key=${key}`)
   }
 
   const getData = async () => {
     try {
       const { data } = await getImage()
-      //const { data } = await getImage()
-      //setConsul(data.explanation)'
       setConsul(data)
     }
     catch (error){
-      //console.log('codigo de error',error.code)
       console.log('ocurrio un error',error.response.status)
-      //setConsul(error.response.status)
   }
   }
 
   useEffect(() => {
     getData()
   }, [])
-  
-  console.log('se imprime consulta',consulta)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    //setQuery(searchRef.current.value)
     const { data } = await getImage(searchRef.current.value)
     setConsul(data)
-    //console.log(searchRef.current.value)
     e.target.reset()
   }
+
+  console.log("el valor de inicio de consulta es: ", consulta)
 
   return (
     <div>
@@ -58,10 +49,10 @@ function App() {
         <button className="btn btn-secondary" type="submit">Search</button>
       </div>
       </form>
-      <ImgText data={ consulta }/>
+      { consulta == null ? 'no hay datos' : <ImgText data={ consulta }/> } 
       
     </div> 
   )
 }
-//<ImgText data={ consulta }/>
+
 export default App
