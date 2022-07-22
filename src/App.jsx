@@ -17,17 +17,16 @@ function App() {
     return await axios.get(`${url}date=${query}&api_key=${key}`)
   }
 
-  const getData = async () => {
-    try {
-      const { data } = await getImage()
-      setConsul(data)
-    }
-    catch (error){
-      console.log('ocurrio un error',error.response.status)
-  }
-  }
-
   useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getImage()
+        setConsul(data)
+      }
+      catch (error){
+        console.log('ocurrio un error',error.response.status)
+      }
+    }
     getData()
   }, [])
 
@@ -37,8 +36,6 @@ function App() {
     setConsul(data)
     e.target.reset()
   }
-
-  console.log("el valor de inicio de consulta es: ", consulta)
 
   return (
     <div>
